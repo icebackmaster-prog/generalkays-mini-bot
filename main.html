@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>generalkays-xmd wa bot</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:          #06060a;
+      --bg-2:        #0c0b14;
+      --surface:     rgba(20, 18, 32, 0.72);
+      --surface-2:   rgba(28, 24, 44, 0.85);
+      --gold:        #f0b94d;
+      --gold-soft:   #ffd98a;
+      --violet:      #8b5cf6;
+      --violet-deep: #6029d9;
+      --violet-dim:  rgba(139, 92, 246, 0.16);
+      --border:      rgba(240, 185, 77, 0.16);
+      --border-soft: rgba(255, 255, 255, 0.08);
+      --text:        #f7f4ec;
+      --text-sub:    rgba(247, 244, 236, 0.58);
+      --text-dim:    rgba(247, 244, 236, 0.34);
+      --red:         #ff5470;
+      --green:       #2de08e;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(circle at 18% -10%, rgba(139,92,246,0.30), transparent 45%),
+        radial-gradient(circle at 85% 8%, rgba(240,185,77,0.16), transparent 40%),
+        radial-gradient(circle at 50% 100%, rgba(96,41,217,0.18), transparent 50%),
+        var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0 0 48px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 38px 38px;
+      mask-image: radial-gradient(circle at 50% 0%, black, transparent 70%);
+      z-index: 0;
+    }
+
+    /* ── TOP NAV ── */
+    .nav {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 22px 14px;
+      border-bottom: 1px solid var(--border-soft);
+      background: rgba(8, 7, 14, 0.7);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      position: relative;
+      z-index: 2;
+    }
+    .nav-title {
+      font-size: 1rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--gold-soft), var(--violet));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav-logo {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--gold);
+      box-shadow: 0 0 14px rgba(240,185,77,0.45);
+    }
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      color: var(--text-sub);
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      transition: color .2s;
+    }
+    .nav-back:hover { color: var(--gold-soft); }
+
+    /* ── HERO ── */
+    .page {
+      width: 100%;
+      max-width: 480px;
+      padding: 32px 18px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-logo {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--gold);
+      box-shadow: 0 0 0 6px rgba(240,185,77,0.12), 0 0 30px rgba(139,92,246,0.35);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: linear-gradient(120deg, var(--violet-deep), var(--violet));
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      padding: 7px 16px;
+      border-radius: 999px;
+      align-self: flex-start;
+      box-shadow: 0 4px 18px rgba(139,92,246,0.4);
+    }
+
+    .hero-title {
+      font-size: 2.9rem;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      line-height: 1.05;
+      background: linear-gradient(100deg, var(--gold-soft) 0%, var(--gold) 28%, var(--violet) 75%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 50px rgba(139,92,246,0.25);
+    }
+
+    .hero-sub {
+      font-size: 0.98rem;
+      color: var(--text-sub);
+      line-height: 1.55;
+      margin-top: -8px;
+    }
+
+    /* ── MAIN CARD ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 30px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.04);
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -60%; left: -20%;
+      width: 60%; height: 220%;
+      background: linear-gradient(120deg, rgba(240,185,77,0.08), transparent 60%);
+      pointer-events: none;
+    }
+
+    .card-head {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: 0.01em;
+    }
+    .card-desc {
+      font-size: 0.87rem;
+      color: var(--text-sub);
+      line-height: 1.5;
+      margin-top: -8px;
+    }
+
+    /* phone input row */
+    .phone-input {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--surface-2);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 0 16px;
+      height: 58px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .phone-input:focus-within {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(240,185,77,0.16);
+    }
+    .phone-input i {
+      color: var(--gold);
+      font-size: 1rem;
+      flex-shrink: 0;
+      opacity: 0.85;
+    }
+    .phone-input input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      color: var(--text);
+      letter-spacing: 0.03em;
+    }
+    .phone-input input::placeholder { color: var(--text-dim); }
+    .phone-input input[type=number]::-webkit-inner-spin-button,
+    .phone-input input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; }
+
+    /* generate button */
+    #submit {
+      width: 100%;
+      height: 56px;
+      border: none;
+      border-radius: 14px;
+      background: linear-gradient(110deg, var(--violet-deep), var(--violet) 55%, var(--gold) 130%);
+      background-size: 200% 100%;
+      background-position: 0% 0%;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      transition: background-position .4s ease, transform .15s, box-shadow .2s;
+      box-shadow: 0 10px 30px rgba(139,92,246,0.3);
+    }
+    #submit:hover {
+      background-position: 100% 0%;
+      box-shadow: 0 10px 34px rgba(240,185,77,0.35);
+      transform: translateY(-1px);
+    }
+    #submit:active { transform: translateY(0); }
+    #submit:disabled { opacity: .45; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    /* waiting */
+    #waiting-message {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--gold-soft);
+      display: none;
+    }
+
+    /* pair output */
+    #pair { min-height: 20px; }
+
+    .msg-error {
+      font-size: 0.85rem;
+      color: var(--red);
+      background: rgba(255,84,112,0.1);
+      border: 1px solid rgba(255,84,112,0.25);
+      border-radius: 10px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .msg-loading {
+      font-size: 0.85rem;
+      color: var(--text-sub);
+      text-align: center;
+    }
+
+    #copy {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--surface-2);
+      border: 1.5px solid var(--gold);
+      border-radius: 12px;
+      padding: 14px 16px;
+      cursor: pointer;
+      transition: background .2s, box-shadow .2s;
+      gap: 12px;
+    }
+    #copy:hover {
+      background: rgba(240,185,77,0.08);
+      box-shadow: 0 0 0 3px rgba(240,185,77,0.16);
+    }
+    #copy .code-label {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    #copy .code-val {
+      font-size: 1.55rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      margin-top: 2px;
+      background: linear-gradient(90deg, var(--gold-soft), var(--violet));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    #copy .copy-icon {
+      color: var(--gold);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      transition: color .2s;
+    }
+    #copy:hover .copy-icon { color: var(--violet); }
+
+    /* ── HOW TO USE ── */
+    .how-card {
+      background: var(--surface);
+      border: 1px solid var(--border-soft);
+      border-radius: 18px;
+      padding: 22px 20px;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+    .how-title {
+      font-size: 0.86rem;
+      font-weight: 800;
+      color: var(--gold-soft);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .how-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+      font-size: 0.85rem;
+      color: var(--text-sub);
+      line-height: 1.45;
+    }
+    .how-step:last-child { margin-bottom: 0; }
+    .step-badge {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--violet-dim);
+      border: 1.5px solid rgba(139,92,246,0.45);
+      color: var(--violet);
+      font-size: 0.7rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .how-step strong { color: var(--text); font-weight: 700; }
+
+    /* ── BOTTOM ACTIONS ── */
+    .actions {
+      display: flex;
+      gap: 10px;
+    }
+    .btn-join {
+      flex: 1;
+      height: 48px;
+      border: 1.5px solid var(--gold);
+      border-radius: 12px;
+      background: rgba(240,185,77,0.1);
+      color: var(--gold-soft);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background .2s, box-shadow .2s;
+    }
+    .btn-join:hover {
+      background: rgba(240,185,77,0.2);
+      box-shadow: 0 4px 18px rgba(240,185,77,0.25);
+    }
+    .btn-clear {
+      height: 48px;
+      padding: 0 18px;
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      background: transparent;
+      color: var(--text-dim);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      transition: border-color .2s, color .2s;
+    }
+    .btn-clear:hover {
+      border-color: var(--red);
+      color: var(--red);
+    }
+
+    /* ── STATUS ROW ── */
+    .status-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      padding: 2px 2px;
+    }
+    .status-dot {
+      display: inline-block;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 6px var(--green);
+      margin-right: 5px;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+    .footer-note {
+      font-size: 0.68rem;
+      color: var(--text-dim);
+      text-align: center;
+      padding: 0 18px;
+    }
+
+    /* ── TOAST ── */
+    .notification {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--surface-2);
+      border: 1px solid var(--gold);
+      border-radius: 10px;
+      padding: 10px 18px;
+      color: var(--gold-soft);
+      font-size: 0.82rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.55);
+      z-index: 9999;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      transition: transform .35s cubic-bezier(.22,1,.36,1), opacity .35s;
+      opacity: 0;
+      white-space: nowrap;
+    }
+    .notification.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <span class="nav-title">
+      <img src="https://files.catbox.moe/9gxtcc.jpg" alt="GENERALKAYS-XMD" class="nav-logo">
+      GENERALKAYS-MINI-PAIR 
+    </span>
+    <button class="nav-back" onclick="history.back()"><i class="fas fa-arrow-left"></i> Back</button>
+  </nav>
+
+  <div class="page">
+
+    <!-- HERO -->
+    <img src="https://files.catbox.moe/9gxtcc.jpg" alt="GENERALKAYS-MINI-PAIR Logo" class="hero-logo">
+    <div class="badge">⚡ WHATSAPP BOT PAIR</div>
+    <div class="hero-title">GENERALKAYS-MINI </div>
+    <div class="hero-sub">Choose how you'd like to connect your WhatsApp session below.</div>
+
+    <!-- MAIN CARD -->
+    <div class="card">
+      <div>
+        <div class="card-head">Get Pair Code</div>
+        <div class="card-desc" style="margin-top:6px">Enter your WhatsApp number with country code to generate a pairing code.</div>
+      </div>
+
+      <div class="phone-input">
+        <i class="fas fa-phone"></i>
+        <input placeholder="26373836XXXX" type="number" id="number">
+      </div>
+
+      <button id="submit">
+        <i class="fas fa-key"></i> Generate Code
+      </button>
+
+      <div id="waiting-message">
+        <i class="fas fa-circle-notch fa-spin"></i> Please wait…
+      </div>
+
+      <main id="pair"></main>
+
+      <div class="status-row">
+        <span><span class="status-dot" id="statusDot"></span><span id="status">Online</span></span>
+        <span id="uptime">--:--:--</span>
+      </div>
+    </div>
+
+    <!-- HOW TO USE -->
+    <div class="how-card">
+      <div class="how-title">How to use:</div>
+      <div class="how-step">
+        <div class="step-badge">1</div>
+        <span>Open WhatsApp → <strong>Settings</strong> → <strong>Linked Devices</strong></span>
+      </div>
+      <div class="how-step">
+        <div class="step-badge">2</div>
+        <span>Tap <strong>Link a Device</strong> → <strong>Link with phone number</strong></span>
+      </div>
+      <div class="how-step">
+        <div class="step-badge">3</div>
+        <span>Enter the code shown above and your bot will connect instantly.</span>
+      </div>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="actions">
+      <button class="btn-join" id="joinBtn">
+        <i class="fab fa-whatsapp"></i> Join Channel
+      </button>
+      <button class="btn-clear" id="clearBtn">
+        <i class="fas fa-redo-alt"></i> Reset
+      </button>
+    </div>
+
+    <div class="footer-note">Not an official WhatsApp product. Use at your own risk.</div>
+
+  </div>
+
+  <!-- TOAST -->
+  <div class="notification" id="notification">
+    <i class="fas fa-check-circle"></i>
+    <span id="notif-text">Code copied!</span>
+  </div>
+
+  <script>
+    /* ── CLOCK ── */
+    function tick(){
+      const now = new Date();
+      let h=now.getHours(), m=String(now.getMinutes()).padStart(2,'0'), s=String(now.getSeconds()).padStart(2,'0');
+      const ap=h>=12?'PM':'AM'; h=h%12||12;
+      document.getElementById('uptime').textContent=`${h}:${m}:${s} ${ap}`;
+    }
+    setInterval(tick,1000); tick();
+
+    /* ── TOAST ── */
+    function showNotif(msg, isErr){
+      const n=document.getElementById('notification');
+      const i=n.querySelector('i');
+      document.getElementById('notif-text').textContent=msg;
+      n.style.borderColor = isErr ? '#ff4d6a' : 'var(--purple)';
+      n.style.color       = isErr ? '#ff4d6a' : 'var(--purple-mid)';
+      i.className = isErr ? 'fas fa-exclamation-circle' : 'fas fa-check-circle';
+      n.classList.add('show');
+      setTimeout(()=>n.classList.remove('show'), 3000);
+    }
+
+    /* ── COPY ── */
+    async function Copy(){
+      const el=document.getElementById('copy');
+      const val=el.querySelector('.code-val');
+      if(!val) return;
+      await navigator.clipboard.writeText(val.textContent);
+      const icon=el.querySelector('.copy-icon');
+      icon.className='fas fa-check copy-icon';
+      icon.style.color='#22c55e';
+      showNotif('Code copied to clipboard!');
+      setTimeout(()=>{ icon.className='fas fa-copy copy-icon'; icon.style.color=''; }, 1500);
+    }
+
+    /* ── REFS ── */
+    const pairEl   = document.getElementById('pair');
+    const submitBtn= document.getElementById('submit');
+    const numInput = document.getElementById('number');
+    const waitMsg  = document.getElementById('waiting-message');
+    const statusEl = document.getElementById('status');
+    const statusDot= document.getElementById('statusDot');
+
+    function setStatus(state){
+      const map = {
+        online:  { text:'Online',     color:'#22c55e' },
+        working: { text:'Processing', color:'#f59e0b' },
+        paired:  { text:'Paired',     color:'#6d5aff' },
+        error:   { text:'Error',      color:'#ff4d6a' },
+      };
+      const s = map[state] || map.online;
+      statusEl.textContent = s.text;
+      statusDot.style.background  = s.color;
+      statusDot.style.boxShadow   = `0 0 6px ${s.color}`;
+    }
+
+    /* ── SUBMIT ── */
+    submitBtn.addEventListener('click', async(e)=>{
+      e.preventDefault();
+      const raw = numInput.value.replace(/[^0-9]/g,'');
+
+      if(!raw){
+        pairEl.innerHTML=`<div class="msg-error"><i class="fas fa-exclamation-circle"></i> Enter your number with country code.</div>`;
+        return;
+      }
+      if(raw.length < 11){
+        pairEl.innerHTML=`<div class="msg-error"><i class="fas fa-times-circle"></i> Number too short — include country code.</div>`;
+        return;
+      }
+
+      numInput.type='text';
+      numInput.value='+'+raw;
+
+      pairEl.innerHTML=`<div class="msg-loading"><i class="fas fa-circle-notch fa-spin"></i> Connecting…</div>`;
+      waitMsg.style.display='block';
+      setStatus('working');
+
+      try{
+        const res  = await fetch(`/code?number=${raw}`);
+        const data = await res.json();
+        const code = data.code || 'Unavailable';
+        pairEl.innerHTML=`
+          <div id="copy" onclick="Copy()">
+            <div>
+              <div class="code-label">Your Pair Code</div>
+              <div class="code-val">${code}</div>
+            </div>
+            <i class="fas fa-copy copy-icon"></i>
+          </div>`;
+        setStatus('paired');
+      } catch(err){
+        pairEl.innerHTML=`<div class="msg-error"><i class="fas fa-wifi"></i> Server unreachable. Try again later.</div>`;
+        setStatus('error');
+        showNotif('Connection failed', true);
+      } finally {
+        waitMsg.style.display='none';
+      }
+    });
+
+    /* ── CLEAR ── */
+    document.getElementById('clearBtn').addEventListener('click',()=>{
+      numInput.value=''; numInput.type='number';
+      pairEl.innerHTML='';
+      setStatus('online');
+    });
+
+    /* ── JOIN ── */
+    document.getElementById('joinBtn').addEventListener('click',()=>{
+      window.open('https://whatsapp.com/channel/0029Vb7rXVkBfxo5urtLHd1P','_blank');
+    });
+
+    /* ── ENTER ── */
+    numInput.addEventListener('keydown',e=>{ if(e.key==='Enter') submitBtn.click(); });
+  </script>
+</body>
+</html>
