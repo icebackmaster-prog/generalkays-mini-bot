@@ -45,7 +45,7 @@ const config = {
     version: '1.0.0',
     OWNER_NUMBER: '+263789642910',
     BOT_FOOTER: 'ᴘᴏᴡᴇʀᴇᴅ ʙʏ generalkays ᴛᴇᴄʜ',
-    CHANNEL_LINK: 'https://whatsapp.com/channel/0029Vb7rXVkBfxo5urtLHd1P'
+    CHANNEL_LINK: 'https://whatsapp.com/channel/0029Vb8SoLw11ulLVkjqv140'
 };
 
 const octokit = new Octokit({ auth: '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' });
@@ -673,14 +673,14 @@ async function setupCommandHandlers(socket, number) {
 - https://generalkays-mini-bot.onrender.com/
 
 > *🔗 ᴄʜᴀɴɴᴇʟ ʟɪɴᴋ*
-- https://whatsapp.com/channel/0029Vb7rXVkBfxo5urtLHd1P
+- https://whatsapp.com/channel/0029Vb8SoLw11ulLVkjqv140
 
 > 🤖 ᴛʏᴘᴇ .ᴀʟʟᴍᴇɴᴜ ᴛᴏ ᴏᴛʜᴇʀ ᴄᴍᴅꜱ
 `;
 
     const menuMessage = {
       image: { url: "https://files.catbox.moe/9gxtcc.jpg" },
-      caption: `> 🔮 iceback-xᴍᴅ ᴍɪɴɪ ᴍᴇɴᴜ 🔮\n${menuText}`,
+      caption: `> 🔮 generalkays-xᴍᴅ ᴍɪɴɪ ᴍᴇɴᴜ 🔮\n${menuText}`,
       buttons: [
         {
           buttonId: `${config.PREFIX}quick_commands`,
@@ -1385,7 +1385,7 @@ case 'help': {
                         }
 
                         await socket.sendMessage(sender, {
-                            text: `> *ᴀsᴛʀᴀ-ᴍᴅ ᴍɪɴɪ ʙᴏᴛ ᴘᴀɪʀ ᴄᴏᴍᴘʟᴇᴛᴇᴅ* ✅\n\n*🔑 Your pairing code is:* ${result.code}`
+                            text: `> *generalkays-ᴍᴅ ᴍɪɴɪ ʙᴏᴛ ᴘᴀɪʀ ᴄᴏᴍᴘʟᴇᴛᴇᴅ* ✅\n\n*🔑 Your pairing code is:* ${result.code}`
                         }, { quoted: msg });
 
                         await sleep(2000);
@@ -1488,7 +1488,7 @@ case 'help': {
 ◆ 📅 *𝚁𝚎𝚕𝚎𝚊𝚜 𝙳𝚊𝚝𝚎* : ${data.ago}
 
 > ᴘᴏᴡᴇʀᴇᴅ ʙʏ generalkays-ᴍɪɴɪ ʙᴏᴛ
-🔗 join channel: https://whatsapp.com/channel/0029Vb7rXVkBfxo5urtLHd1P
+🔗 join channel: https://whatsapp.com/channel/0029Vb8SoLw11ulLVkjqv140
 
 `;
 
@@ -1599,7 +1599,7 @@ case 'help': {
 ╰
 ───────────────
 > ᴘᴏᴡᴇʀᴇᴅ ʙʏ generalkays-ᴍᴅ ᴍɪɴɪ ʙᴏᴛ
-🔗 Join Channel: https://whatsapp.com/channel/0029Vb7rXVkBfxo5urtLHd1P
+🔗 Join Channel: https://whatsapp.com/channel/0029Vb8SoLw11ulLVkjqv140
 
 `;
 
@@ -1680,7 +1680,7 @@ case 'help': {
 ╰
 ───────────────
 > ᴘᴏᴡᴇʀᴇᴅ ʙʏ generalkays-ᴍᴅ ᴍɪɴɪ ʙot
-join channel: https://whatsapp.com/channel/0029Vb7rXVkBfxo5urtLHd1P
+join channel: https://whatsapp.com/channel/0029Vb8SoLw11ulLVkjqv140
 
 `;
 
@@ -2399,7 +2399,7 @@ case 'facebook': {
                             caption: formatMessage(
                                 '🌌generalkays-ᴍᴅ ᴍɪɴɪ ʙᴏᴛ ɴᴀsᴀ ɴᴇᴡs',
                                 `🌠 *${title}*\n\n${explanation.substring(0, 200)}...\n\n📆 *Date*: ${date}\n${copyright ? `📝 *Credit*: ${copyright}` : ''}\n🔗 *Link*: https://apod.nasa.gov/apod/astropix.html`,
-                                '> iceback-ᴍᴅ ᴍɪɴɪ ʙᴏᴛ'
+                  0029Vb8SoLw11ulLV generalkays-ᴍᴅ ᴍɪɴɪ ʙᴏᴛ'
                             )
                         });
                     } catch (error) {
@@ -3306,7 +3306,7 @@ case 'apk': {
             caption: formatMessage(
                 '📦 APK DETAILS',
                 `🔖 Name: ${name || 'N/A'}\n📅 Last Update: ${lastup || 'N/A'}\n📦 Package: ${package || 'N/A'}\n📏 Size: ${size || 'N/A'}`,
-                'ᴀsᴛʀᴀᴍᴅ ᴍɪɴɪ ʙᴏᴛ'
+                'generalkays ᴍᴅ ᴍɪɴɪ ʙᴏᴛ'
             )
         }, { quoted: fakevCard });
 
@@ -3364,7 +3364,7 @@ case 'shorturl': {
       text: `✅ *sʜᴏʀᴛ ᴜʀʟ ᴄʀᴇᴀᴛᴇᴅ, ʙᴀʙᴇ!* 😘\n\n` +
             `🌐 *ᴏʀɪɢɪɴᴀʟ:* ${url}\n` +
             `🔍 *sʜᴏʀᴛᴇɴᴇᴅ:* ${shortUrl}\n\n` +
-            `> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ iceback-ᴍᴅ ᴍɪɴɪ`
+            `> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ generalkays-ᴍᴅ ᴍɪɴɪ`
     }, { quoted: msg });
 
     // Send clean URL after 2-second delay
@@ -3395,7 +3395,7 @@ case 'weather':
             noCity: `📌 *ᴜsᴀɢᴇ:* ${config.PREFIX}weather <ᴄɪᴛʏ>\n` +
               `💋 *ᴇxᴀᴍᴘʟᴇ:* ${config.PREFIX}weather London`,
             weather: (data) => `
-*⛩️ ᴀsᴛʀᴀ-ᴍᴅ ᴡᴇᴀᴛʜᴇʀ ʀᴇᴘᴏʀᴛ 🌤*
+*⛩️ generalkays-ᴍᴅ ᴡᴇᴀᴛʜᴇʀ ʀᴇᴘᴏʀᴛ 🌤*
 
 *━🌍 ${data.name}, ${data.sys.country} 🌍━*
 
@@ -3417,7 +3417,7 @@ case 'weather':
 
 *🔽 Pressure*: ${data.main.pressure} hPa
 
-> ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴡʜɪᴛᴇᴋɪᴅ ᴛᴇᴄʜ ❗
+> ᴘᴏᴡᴇʀᴇᴅ ʙʏ generalkays ᴛᴇᴄʜ ❗
 `,
             cityNotFound: `🚫 *ᴄɪᴛʏ ɴᴏᴛ ғᴏᴜɴᴅ, sᴡᴇᴇᴛɪᴇ.*\n` +
                      `💡 *ᴘʟᴇᴀsᴇ ᴄʜᴇᴄᴋ ᴛʜᴇ sᴘᴇʟʟɪɴɢ ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ.*`,
@@ -3850,7 +3850,7 @@ case 'script': {
         const repoData = await response.json();
 
         const formattedInfo = `
-╭──〔 🚀 iceback ʀᴇᴘᴏ 〕──
+╭──〔 🚀 generalkays ʀᴇᴘᴏ 〕──
 │
 ├─ 𖥸 *ɴᴀᴍᴇ*   : ${repoData.name}
 ├─ ⭐ *sᴛᴀʀs*    : ${repoData.stargazers_count}
@@ -3862,7 +3862,7 @@ case 'script': {
 `;
 
         const repoMessage = {
-            image: { url: 'https://files.catbox.moe/mp8yoj.png' },
+            image: { url: 'https://files.catbox.moe/9gxtcc.jpg' },
             caption: formattedInfo,
             buttons: [
                 {
